@@ -26,8 +26,8 @@ public class WeblogWebApplicationTests {
     @Test
     public void test() {
         UserDO userDO = UserDO.builder()
-                .username("Lucy")
-                .password("123456")
+                .username("test")
+                .password("$2a$10$5qrEoGykruomHTcqf7FEl.B9NjmDgE1biqs4ZajJdcQVvQ/Itb1Ue")
                 .createTime(LocalDateTime.now())
                 .updateTime(LocalDateTime.now())
                 .isDeleted(false)
