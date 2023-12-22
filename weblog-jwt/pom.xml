@@ -9,9 +9,9 @@
         <version>${revision}</version>
     </parent>
 
-    <artifactId>weblog-admin</artifactId>
-    <name>weblog-admin</name>
-    <description>后台管理模块</description>
+    <artifactId>weblog-jwt</artifactId>
+    <name>weblog-jwt</name>
+    <description>认证鉴权模块</description>
 
     <dependencies>
         <!-- Spring Security -->
@@ -19,22 +19,39 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
-        <!-- 通用功能模块 -->
+        <!-- JWT -->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-impl</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-jackson</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <!-- 工具包 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
+        <!-- 通用模块 -->
         <dependency>
             <groupId>com.vker</groupId>
             <artifactId>weblog-common</artifactId>
         </dependency>
-        <!-- 认证鉴权模块 -->
+        <!-- json -->
         <dependency>
-            <groupId>com.vker</groupId>
-            <artifactId>weblog-jwt</artifactId>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
         </dependency>
-        <!-- knife4j -->
-        <dependency>
-            <groupId>com.github.xiaoymin</groupId>
-            <artifactId>knife4j-openapi2-spring-boot-starter</artifactId>
-        </dependency>
-        <!-- lombok -->
+        <!-- 免写冗余的 Java 样板式代码 -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>

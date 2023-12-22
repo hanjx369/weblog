@@ -24,6 +24,11 @@
             <groupId>com.vker</groupId>
             <artifactId>weblog-common</artifactId>
         </dependency>
+        <!-- 常用工具库 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
         <!-- 后台管理模块 -->
         <dependency>
             <groupId>com.vker</groupId>

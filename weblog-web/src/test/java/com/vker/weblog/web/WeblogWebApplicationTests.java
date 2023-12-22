@@ -2,10 +2,12 @@ package com.vker.weblog.web;
 
 import com.vker.weblog.common.domain.dos.UserDO;
 import com.vker.weblog.common.domain.mapper.UserMapper;
+import com.vker.weblog.jwt.utils.JwtTokenHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.time.LocalDateTime;
 
@@ -33,4 +35,14 @@ public class WeblogWebApplicationTests {
         userMapper.insert(userDO);
     }
 
+    @Test
+    public void jwtGenerateBase64Key() {
+        System.out.println(JwtTokenHelper.generateBase64Key());
+    }
+
+    @Test
+    public void bcrPassword() {
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        System.out.println(encoder.encode("123456"));
+    }
 }

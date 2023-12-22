@@ -11,6 +11,7 @@ public class IPUtils {
 
     /***
      * 获取客户端ip地址(可以穿透代理)
+     *
      * @param request
      * @return
      */
@@ -47,7 +48,7 @@ public class IPUtils {
             ip = request.getHeader("REMOTE_ADDR");
         }
         if (ip == null || ip.isEmpty() || "unknown".equalsIgnoreCase(ip)) {
-            ip = request.getRemoteAddr();
+            ip = request.getLocalAddr();
         }
         return ip;
     }

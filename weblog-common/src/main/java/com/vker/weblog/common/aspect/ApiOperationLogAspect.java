@@ -17,6 +17,8 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Method;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.UUID;
 import java.util.function.Function;
@@ -60,7 +62,8 @@ public class ApiOperationLogAspect {
             String descriptions = getApiOperationLogDescription(joinPoint);
             Object result = joinPoint.proceed();
             long endTime = System.currentTimeMillis();
-            log.info("========================>请求开始");
+            log.info("========================>请求开始打印");
+            log.info("时间: {}", LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
             log.info("IP: {}", ip);
             log.info("路径: {}", url);
             log.info("类型: {}", requestType);
@@ -70,7 +73,7 @@ public class ApiOperationLogAspect {
             log.info("入参: {}", argsJsonString);
             log.info("出参: {}", JSONUtils.toJsonString(result));
             log.info("耗时: {} ms", endTime - startTime);
-            log.info("========================>请求结束");
+            log.info("========================>请求结束打印");
             return result;
         } finally {
             MDC.clear();
