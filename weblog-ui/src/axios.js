@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { getToken } from '@/composables/auth'
+import { getToken } from '@/composables/cookie'
 import { showMessage } from '@/composables/util'
 
 // 创建 Axios 实例
@@ -33,7 +33,7 @@ instance.interceptors.response.use(
     // 2xx 范围内的状态码都会触发该函数。
     // 对响应数据做点什么
     if (!res.success) {
-      showMessage(res.message, 'warning')
+      showMessage(res.message, 'error')
     }
     return res
   },

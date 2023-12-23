@@ -18,6 +18,47 @@ const routes = [
     meta: {
       title: 'Weblog 登录'
     }
+  },
+  {
+    path: '/admin',
+    component: () => import('@/layouts/admin/admin.vue'),
+    children: [
+      {
+        path: '/admin/index',
+        component: () => import('@/pages/admin/index.vue'),
+        meta: {
+          title: '仪表盘'
+        }
+      },
+      {
+        path: '/admin/article/list',
+        component: () => import('@/pages/admin/article-list.vue'),
+        meta: {
+          title: '文章管理'
+        }
+      },
+      {
+        path: '/admin/category/list',
+        component: () => import('@/pages/admin/category-list.vue'),
+        meta: {
+          title: '分类管理'
+        }
+      },
+      {
+        path: '/admin/tag/list',
+        component: () => import('@/pages/admin/tag-list.vue'),
+        meta: {
+          title: '标签管理'
+        }
+      },
+      {
+        path: '/admin/blog/setting',
+        component: () => import('@/pages/admin/blog-setting.vue'),
+        meta: {
+          title: '博客设置'
+        }
+      }
+    ]
   }
 ]
 

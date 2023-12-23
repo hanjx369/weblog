@@ -3,7 +3,10 @@ import { login } from '@/api/admin/user'
 import { ref, reactive, onMounted, onBeforeUnmount } from 'vue'
 import { useRouter } from 'vue-router'
 import { showMessage } from '@/composables/util'
-import { setToken } from '@/composables/auth'
+import { setToken } from '@/composables/cookie'
+import { useUserStore } from '@/stores/user'
+
+const userStore = useUserStore()
 const router = useRouter()
 
 // 登录按钮加载
@@ -47,8 +50,8 @@ const onSubmit = () => {
           if (res.success) {
             showMessage('登陆成功')
             const { token } = res.data
-            console.log(token)
             setToken(token)
+            userStore.setUserInfo()
             router.push('/admin/index')
           }
         })
