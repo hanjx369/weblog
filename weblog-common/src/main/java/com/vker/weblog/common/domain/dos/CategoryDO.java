@@ -2,40 +2,36 @@ package com.vker.weblog.common.domain.dos;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
 /**
  * @Author: Vker
- * @Date: 2023-12-22
- * @Description: 用户角色表实体
+ * @Date: 2023-12-23
+ * @Description: 分类表实体类
  */
 @Data
 @Builder
-@TableName("t_user_role")
-public class UserRoleDO {
+@AllArgsConstructor
+@NoArgsConstructor
+@TableName("t_category")
+public class CategoryDO {
 
-    /**
-     * 主键
-     */
     @TableId
     private Long id;
 
-    /**
-     * 用户名
-     */
-    private String username;
+    private String name;
 
-    /**
-     * 角色
-     */
-    private String role;
-
-    /**
-     * 创建时间
-     */
     private LocalDateTime createTime;
+
+    private LocalDateTime updateTime;
+
+    @TableLogic
+    private Boolean isDeleted;
 }
