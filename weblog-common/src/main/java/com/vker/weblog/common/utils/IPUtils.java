@@ -48,7 +48,7 @@ public class IPUtils {
             ip = request.getHeader("REMOTE_ADDR");
         }
         if (ip == null || ip.isEmpty() || "unknown".equalsIgnoreCase(ip)) {
-            ip = request.getLocalAddr();
+            ip = request.getRemoteAddr();
         }
         return ip;
     }
