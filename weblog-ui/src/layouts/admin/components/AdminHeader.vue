@@ -6,6 +6,7 @@ import { useUserStore } from '@/stores/user'
 import { showMessage, showModel } from '@/composables/util'
 import { useRouter } from 'vue-router'
 import { updateAdminPassword } from '@/api/admin/user'
+import FormDialog from '@/components/FormDialog.vue'
 
 const router = useRouter()
 // 引入了用户 Store
@@ -31,9 +32,6 @@ const handleMenuWidth = () => {
 
 // 刷新页面
 const handleRefresh = () => location.reload()
-
-// 对话框是否显示
-const dialogVisible = ref(false)
 
 const formRef = ref(null)
 
@@ -69,11 +67,13 @@ const rules = {
   ]
 }
 
+const formDialogRef = ref(null)
+
 // 下拉菜单事件处理
 const handleCommand = (command) => {
   // 更新密码
   if (command === 'updatePassword') {
-    dialogVisible.value = true
+    formDialogRef.value.open()
   } else if (command === 'logout') {
     // 退出登录
     logout()
@@ -85,22 +85,25 @@ const onSubmit = () => {
   // 先验证 form 表单字段
   formRef.value.validate(async (valid) => {
     if (valid) {
+      formDialogRef.value.showBtnLoading()
       if (form.password != form.rePassword) {
         showMessage('两次密码输入不一致，请检查！', 'warning')
       } else {
         // 调用修改用户密码接口
-        await updateAdminPassword(form).then((res) => {
-          // 判断是否成功
-          if (res.success == true) {
-            showMessage('密码重置成功，请重新登录！')
-            // 退出登录
-            userStore.logout()
-            // 隐藏对话框
-            dialogVisible.value = false
-            // 跳转登录页
-            router.push('/login')
-          }
-        })
+        await updateAdminPassword(form)
+          .then((res) => {
+            // 判断是否成功
+            if (res.success == true) {
+              showMessage('密码重置成功，请重新登录！')
+              // 退出登录
+              userStore.logout()
+              // 隐藏对话框
+              formDialogRef.value.close()
+              // 跳转登录页
+              router.push('/login')
+            }
+          })
+          .finally(() => formDialogRef.value.closeBtnLoading())
       }
     }
   })
@@ -178,54 +181,41 @@ function logout() {
         </template>
       </el-dropdown>
     </div>
+    <!-- 修改密码 -->
+    <FormDialog ref="formDialogRef" title="修改密码" destroyOnClose @submit="onSubmit">
+      <el-form ref="formRef" :rules="rules" :model="form">
+        <el-form-item label="用户名" prop="username" label-width="120px">
+          <!-- 输入框组件 -->
+          <el-input
+            size="large"
+            v-model="form.username"
+            placeholder="请输入用户名"
+            clearable
+            disabled
+          />
+        </el-form-item>
+        <el-form-item label="密码" prop="password" label-width="120px">
+          <el-input
+            size="large"
+            type="password"
+            v-model="form.password"
+            placeholder="请输入密码"
+            clearable
+            show-password
+          />
+        </el-form-item>
+        <el-form-item label="确认密码" prop="rePassword" label-width="120px">
+          <el-input
+            size="large"
+            type="password"
+            v-model="form.rePassword"
+            placeholder="请确认密码"
+            clearable
+            show-password
+          />
+        </el-form-item>
+      </el-form>
+    </FormDialog>
   </div>
-  <!-- 修改密码 -->
-  <el-dialog
-    v-model="dialogVisible"
-    title="修改密码"
-    width="40%"
-    :draggable="true"
-    :close-on-click-modal="false"
-    :close-on-press-escape="false"
-  >
-    <el-form ref="formRef" :rules="rules" :model="form">
-      <el-form-item label="用户名" prop="username" label-width="120px">
-        <!-- 输入框组件 -->
-        <el-input
-          size="large"
-          v-model="form.username"
-          placeholder="请输入用户名"
-          clearable
-          disabled
-        />
-      </el-form-item>
-      <el-form-item label="密码" prop="password" label-width="120px">
-        <el-input
-          size="large"
-          type="password"
-          v-model="form.password"
-          placeholder="请输入密码"
-          clearable
-          show-password
-        />
-      </el-form-item>
-      <el-form-item label="确认密码" prop="rePassword" label-width="120px">
-        <el-input
-          size="large"
-          type="password"
-          v-model="form.rePassword"
-          placeholder="请确认密码"
-          clearable
-          show-password
-        />
-      </el-form-item>
-    </el-form>
-    <template #footer>
-      <span class="dialog-footer">
-        <el-button @click="dialogVisible = false">取消</el-button>
-        <el-button type="primary" @click="onSubmit"> 提交 </el-button>
-      </span>
-    </template>
-  </el-dialog>
 </template>
 <style scoped></style>
