@@ -99,6 +99,7 @@ const reset = () => {
   pickDate.value = ''
   startDate.value = null
   endDate.value = null
+  getTableData()
 }
 
 // 新增
