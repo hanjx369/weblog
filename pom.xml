@@ -40,6 +40,7 @@
         <p6spy.version>3.9.1</p6spy.version>
         <jjwt.version>0.11.2</jjwt.version>
         <fastjson2.version>2.0.43</fastjson2.version>
+        <minio.version>8.2.1</minio.version>
     </properties>
 
     <dependencyManagement>
@@ -119,6 +120,13 @@
                 <artifactId>fastjson2</artifactId>
                 <version>${fastjson2.version}</version>
             </dependency>
+            <!-- 对象存储 Minio -->
+            <dependency>
+                <groupId>io.minio</groupId>
+                <artifactId>minio</artifactId>
+                <version>${minio.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 

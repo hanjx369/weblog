@@ -14,8 +14,10 @@ import org.slf4j.MDC;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.Method;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -57,7 +59,12 @@ public class ApiOperationLogAspect {
             // 获取请求入参
             Object[] args = joinPoint.getArgs();
             // 入参参数
-            String argsJsonString = Arrays.stream(args).map(toJsonString()).collect(Collectors.joining(", "));
+            String argsJsonString = Arrays.stream(args)
+                    .filter(item ->
+                            !(item instanceof HttpServletRequest)
+                                    && !(item instanceof HttpServletResponse)
+                                    && !(item instanceof MultipartFile))
+                    .map(toJsonString()).collect(Collectors.joining(", "));
             // 注解描述
             String descriptions = getApiOperationLogDescription(joinPoint);
             Object result = joinPoint.proceed();
