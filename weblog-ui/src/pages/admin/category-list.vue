@@ -50,7 +50,6 @@ const endDate = reactive({})
 const datepickerChange = (e) => {
   startDate.value = moment(e[0]).format('YYYY-MM-DD')
   endDate.value = moment(e[1]).format('YYYY-MM-DD')
-  console.log('开始时间：' + startDate.value + ', 结束时间：' + endDate.value)
 }
 
 // 表格加载 Loading
@@ -164,11 +163,6 @@ const deleteCategorySubmit = (row) => {
         showMessage('删除成功')
         // 重新请求分页接口，渲染数据
         getTableData()
-      } else {
-        // 获取服务端返回的错误消息
-        let message = res.message
-        // 提示错误消息
-        showMessage(message, 'error')
       }
     })
   })

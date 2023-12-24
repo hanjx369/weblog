@@ -14,3 +14,8 @@ export function addCategory(data) {
 export function deleteCategory(id) {
   return axios.post('/admin/category/delete', { id })
 }
+
+// 下拉列表
+export function findCategorySelectList() {
+  return axios.get('/admin/category/select/list')
+}
