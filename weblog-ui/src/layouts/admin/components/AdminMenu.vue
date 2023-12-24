@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useMenuStore } from '@/stores/menu'
 
@@ -37,6 +37,12 @@ const menus = [
 
 // 根据路由地址判断哪个菜单被选中
 const defaultActive = ref(route.path)
+watch(
+  () => route.path,
+  (newValue) => {
+    defaultActive.value = newValue
+  }
+)
 // 选则菜单
 const handleSelect = (path) => {
   router.push(path)

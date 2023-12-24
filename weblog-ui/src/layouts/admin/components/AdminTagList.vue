@@ -6,7 +6,7 @@ const { menuStore, activeTab, tabList, tabChange, removeTab, handleCloseTab } = 
 <template>
   <!-- 左边：标签导航栏 -->
   <div
-    class="fixed top-[64px] h-[44px] px-2 right-0 z-50 flex items-center bg-white transition-all duration-300 shadow"
+    class="absolute top-[64px] h-[44px] px-2 right-0 z-50 flex items-center bg-white transition-all duration-300 shadow"
     :style="{ left: menuStore.menuWidth }"
   >
     <el-tabs
