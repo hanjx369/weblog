@@ -1,9 +1,9 @@
 package com.vker.weblog.admin.controller;
 
-import com.vker.weblog.admin.model.vo.AddCategoryReqVO;
-import com.vker.weblog.admin.model.vo.DeleteCategoryReqVO;
-import com.vker.weblog.admin.model.vo.FindCategoryPageListReqVO;
-import com.vker.weblog.admin.model.vo.FindCategoryPageListRspVO;
+import com.vker.weblog.admin.model.vo.category.AddCategoryReqVO;
+import com.vker.weblog.admin.model.vo.category.DeleteCategoryReqVO;
+import com.vker.weblog.admin.model.vo.category.FindCategoryPageListReqVO;
+import com.vker.weblog.admin.model.vo.category.FindCategoryPageListRspVO;
 import com.vker.weblog.admin.service.AdminCategoryService;
 import com.vker.weblog.common.annotation.ApiOperationLog;
 import com.vker.weblog.common.model.vo.SelectRspVO;
@@ -14,10 +14,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -57,7 +54,7 @@ public class AdminCategoryController {
         return categoryService.deleteCategory(deleteCategoryReqVO);
     }
 
-    @PostMapping("/category/select/list")
+    @GetMapping("/category/select/list")
     @ApiOperation(value = "分类 Select 下拉列表数据获取")
     @ApiOperationLog(description = "分类 Select 下拉列表数据获取")
     public Response<List<SelectRspVO>> findCategorySelectList() {

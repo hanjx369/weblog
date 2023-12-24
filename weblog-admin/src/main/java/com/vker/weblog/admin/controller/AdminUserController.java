@@ -1,7 +1,7 @@
 package com.vker.weblog.admin.controller;
 
-import com.vker.weblog.admin.model.vo.FindUserInfoRspVO;
-import com.vker.weblog.admin.model.vo.UpdateAdminUserPasswordReqVO;
+import com.vker.weblog.admin.model.vo.user.FindUserInfoRspVO;
+import com.vker.weblog.admin.model.vo.user.UpdateAdminUserPasswordReqVO;
 import com.vker.weblog.admin.service.AdminUserService;
 import com.vker.weblog.common.annotation.ApiOperationLog;
 import com.vker.weblog.common.utils.Response;

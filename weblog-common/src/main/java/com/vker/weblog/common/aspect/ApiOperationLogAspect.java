@@ -1,8 +1,8 @@
 package com.vker.weblog.common.aspect;
 
+import com.alibaba.fastjson2.JSON;
 import com.vker.weblog.common.annotation.ApiOperationLog;
 import com.vker.weblog.common.utils.IPUtils;
-import com.vker.weblog.common.utils.JSONUtils;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -71,7 +71,7 @@ public class ApiOperationLogAspect {
             log.info("方法: {}", methodName);
             log.info("描述: {}", descriptions);
             log.info("入参: {}", argsJsonString);
-            log.info("出参: {}", JSONUtils.toJsonString(result));
+            log.info("出参: {}", JSON.toJSONString(result));
             log.info("耗时: {} ms", endTime - startTime);
             log.info("========================>请求结束打印");
             return result;
@@ -99,6 +99,6 @@ public class ApiOperationLogAspect {
      * @return
      */
     private Function<Object, String> toJsonString() {
-        return JSONUtils::toJsonString;
+        return JSON::toJSONString;
     }
 }

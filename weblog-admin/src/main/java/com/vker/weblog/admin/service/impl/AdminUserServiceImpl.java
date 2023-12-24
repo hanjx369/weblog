@@ -1,7 +1,7 @@
 package com.vker.weblog.admin.service.impl;
 
-import com.vker.weblog.admin.model.vo.FindUserInfoRspVO;
-import com.vker.weblog.admin.model.vo.UpdateAdminUserPasswordReqVO;
+import com.vker.weblog.admin.model.vo.user.FindUserInfoRspVO;
+import com.vker.weblog.admin.model.vo.user.UpdateAdminUserPasswordReqVO;
 import com.vker.weblog.admin.service.AdminUserService;
 import com.vker.weblog.common.domain.mapper.UserMapper;
 import com.vker.weblog.common.enums.ResponseCodeEnum;
