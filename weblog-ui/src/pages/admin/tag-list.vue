@@ -128,8 +128,7 @@ const rules = {
       required: true,
       message: '标签名称不能为空',
       trigger: 'blur'
-    },
-    { min: 1, max: 20, message: '标签名称字数要求大于 1 个字符，小于 20 个字符', trigger: 'blur' }
+    }
   ]
 }
 
