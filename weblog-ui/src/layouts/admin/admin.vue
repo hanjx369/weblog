@@ -20,14 +20,13 @@ const menuStore = useMenuStore()
     <!-- 主容器 -->
     <el-container>
       <!-- 顶栏容器 -->
-      <el-header>
+      <el-header class="w-full">
         <AdminHeader></AdminHeader>
       </el-header>
 
       <el-main>
         <!-- 标签导航栏 -->
         <AdminTagList></AdminTagList>
-
         <!-- 主内容（根据路由动态展示不同页面） -->
         <router-view v-slot="{ Component }">
           <Transition name="fade">

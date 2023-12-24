@@ -17,5 +17,5 @@ export function deleteCategory(id) {
 
 // 下拉列表
 export function findCategorySelectList() {
-  return axios.get('/admin/category/select/list')
+  return axios.post('/admin/category/select/list')
 }
