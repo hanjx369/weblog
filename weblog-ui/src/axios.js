@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { getToken } from '@/composables/cookie'
+import { getToken, removeToken } from '@/composables/cookie'
 import { showMessage } from '@/composables/util'
 
 // 创建 Axios 实例
@@ -42,6 +42,16 @@ instance.interceptors.response.use(
     // 对响应错误做点什么
     const errorMessage = error.response.data.message || '请求失败'
     showMessage(errorMessage, 'error')
+
+    const status = error.response.status
+    // 状态码 401
+    if (status === 401) {
+      // 删除 cookie 中的令牌
+      removeToken()
+      // 刷新页面
+      location.reload()
+    }
+
     return Promise.reject(error)
   }
 )

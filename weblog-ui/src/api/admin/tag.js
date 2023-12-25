@@ -15,7 +15,12 @@ export function deleteTag(id) {
   return axios.post('/admin/tag/delete', { id })
 }
 
-// 下拉列表
-export function findCategorySelectList(key) {
+// 根据标签名模糊查询
+export function searchTags(key) {
   return axios.post('/admin/tag/search', { key })
+}
+
+// 获取标签 select 列表数据
+export function getTagSelectList() {
+  return axios.post('/admin/tag/select/list')
 }

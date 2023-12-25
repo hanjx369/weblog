@@ -4,10 +4,12 @@ const locale = zhCn
 </script>
 
 <template>
-  <!-- 设置语言为中文 -->
-  <el-config-provider :locale="locale">
-    <router-view></router-view>
-  </el-config-provider>
+  <div class="absolute h-full w-full">
+    <!-- 设置语言为中文 -->
+    <el-config-provider :locale="locale">
+      <router-view></router-view>
+    </el-config-provider>
+  </div>
 </template>
 
 <style scoped>

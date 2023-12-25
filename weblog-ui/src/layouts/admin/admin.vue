@@ -30,10 +30,7 @@ const menuStore = useMenuStore()
         <!-- 主内容（根据路由动态展示不同页面） -->
         <router-view v-slot="{ Component }">
           <Transition name="fade">
-            <!-- max 指定最多缓存 10 个组件 -->
-            <KeepAlive :max="10">
-              <component :is="Component"></component>
-            </KeepAlive>
+            <component :is="Component"></component>
           </Transition>
         </router-view>
       </el-main>
