@@ -68,6 +68,22 @@ const routes = [
       // meta 信息
       title: 'Weblog 归档页'
     }
+  },
+  {
+    path: '/category/list', // 分类页
+    component: () => import('@/pages/frontend/category-list.vue'),
+    meta: {
+      // meta 信息
+      title: 'Weblog 分类页'
+    }
+  },
+  {
+    path: '/category/article/list', // 分类文章页
+    component: () => import('@/pages/frontend/category-article-list.vue'),
+    meta: {
+      // meta 信息
+      title: 'Weblog 分类文章页'
+    }
   }
 ]
 
