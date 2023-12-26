@@ -70,4 +70,9 @@ public class BlogSettingsDO {
      * 知乎
      */
     private String zhihuHomepage;
+
+    /**
+     * ICP备案号
+     */
+    private String icp;
 }

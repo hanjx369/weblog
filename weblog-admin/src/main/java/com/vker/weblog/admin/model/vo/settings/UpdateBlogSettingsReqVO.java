@@ -52,4 +52,7 @@ public class UpdateBlogSettingsReqVO {
 
     @ApiModelProperty(value = "知乎地址")
     private String zhihuHomepage;
+
+    @ApiModelProperty(value = "知乎地址")
+    private String icp;
 }

@@ -1,4 +1,4 @@
-package com.vker.weblog.admin.model.vo.settings;
+package com.vker.weblog.web.model.vo.setting;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -9,17 +9,17 @@ import lombok.NoArgsConstructor;
 
 /**
  * @Author: Vker
- * @Date: 2023-12-24
- * @Description: 网站信息出参
+ * @Date: 2023-12-25
+ * @Description:
  */
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@ApiModel(value = "网站信息出参 VO")
-public class FindBlogSettingsRspVO {
+@ApiModel(value = "网站设置详情 VO")
+public class FindBlogSettingsDetailRspVO {
 
-    @ApiModelProperty(value = "网站 LOGO")
+    @ApiModelProperty(value = "网站logo")
     private String logo;
 
     @ApiModelProperty(value = "网站名称")
@@ -28,24 +28,24 @@ public class FindBlogSettingsRspVO {
     @ApiModelProperty(value = "网站作者")
     private String author;
 
-    @ApiModelProperty(value = "网站介绍语")
+    @ApiModelProperty(value = "网站介绍")
     private String introduction;
 
     @ApiModelProperty(value = "作者头像")
     private String avatar;
 
-    @ApiModelProperty(value = "github地址")
+    @ApiModelProperty(value = "github主页")
     private String githubHomepage;
 
-    @ApiModelProperty(value = "稀土掘进地址")
+    @ApiModelProperty(value = "稀土掘金主页")
     private String xituHomepage;
 
-    @ApiModelProperty(value = "gitee地址")
+    @ApiModelProperty(value = "gitee主页")
     private String giteeHomepage;
 
-    @ApiModelProperty(value = "知乎地址")
+    @ApiModelProperty(value = "知乎主页")
     private String zhihuHomepage;
 
-    @ApiModelProperty(value = "备案号")
+    @ApiModelProperty(value = "ICP备案号")
     private String icp;
 }

@@ -7,6 +7,9 @@ import { showMessage, showModel } from '@/composables/util'
 import { useRouter } from 'vue-router'
 import { updateAdminPassword } from '@/api/admin/user'
 import FormDialog from '@/components/FormDialog.vue'
+import { useBlogSettingsStore } from '@/stores/blogsettings'
+
+const blogSettingsStore = useBlogSettingsStore()
 
 const router = useRouter()
 // 引入了用户 Store
@@ -77,6 +80,8 @@ const handleCommand = (command) => {
   } else if (command === 'logout') {
     // 退出登录
     logout()
+  } else if (command === 'intoFronted') {
+    router.push('/')
   }
 }
 
@@ -165,11 +170,7 @@ function logout() {
         <el-dropdown class="flex items-center justify-center" @command="handleCommand">
           <span class="el-dropdown-link flex items-center justify-center text-gray-700 text-xs">
             <!-- 头像 Avatar -->
-            <el-avatar
-              class="mr-2"
-              :size="25"
-              src="https://p.qqan.com/up/2023-12/20231214845146705.jpg"
-            />
+            <el-avatar class="mr-2" :size="25" :src="blogSettingsStore.blogSettings.avatar" />
             {{ userStore.userInfo.username }}
             <el-icon class="el-icon--right">
               <arrow-down />
@@ -177,6 +178,7 @@ function logout() {
           </span>
           <template #dropdown>
             <el-dropdown-menu>
+              <el-dropdown-item command="intoFronted">进入前台</el-dropdown-item>
               <el-dropdown-item command="updatePassword">修改密码</el-dropdown-item>
               <el-dropdown-item command="logout">退出登录</el-dropdown-item>
             </el-dropdown-menu>

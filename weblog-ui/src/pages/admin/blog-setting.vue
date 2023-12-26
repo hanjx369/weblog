@@ -15,7 +15,8 @@ const form = reactive({
   githubHomepage: '',
   giteeHomepage: '',
   zhihuHomepage: '',
-  xituHomepage: ''
+  xituHomepage: '',
+  icp: ''
 })
 
 // 规则校验
@@ -75,6 +76,7 @@ async function initBlogSettings() {
       form.logo = res.data.logo
       form.avatar = res.data.avatar
       form.introduction = res.data.introduction
+      form.icp = res.data.icp
 
       // 第三方平台信息设置，先判断后端返回平台链接是否为空，若不为空，则将 switch 组件置为选中状态，并设置表单对应数据
       if (res.data.githubHomepage) {
@@ -216,6 +218,9 @@ const onSubmit = () => {
               <Plus />
             </el-icon>
           </el-upload>
+        </el-form-item>
+        <el-form-item label="ICP备案号" prop="icp">
+          <el-input v-model="form.icp" />
         </el-form-item>
         <!-- 开启 Github 访问 -->
         <el-form-item label="开启 GihHub 访问">
