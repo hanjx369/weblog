@@ -137,7 +137,7 @@ const publishArticleFormRef = ref(null)
 const form = reactive({
   id: null,
   title: '',
-  content: '请输入内容',
+  content: '',
   cover: '',
   categoryId: null,
   tags: [],
@@ -437,6 +437,7 @@ const updateSubmit = () => {
           <!-- Markdown 编辑器 -->
           <MdEditor
             v-model="form.content"
+            placeholder="开始写文章吧..."
             @onUploadImg="onUploadImg"
             editorId="publishArticleEditor"
           />
@@ -552,6 +553,7 @@ const updateSubmit = () => {
         <el-form-item label="内容" prop="content">
           <!-- Markdown 编辑器 -->
           <MdEditor
+            placeholder="开始写文章吧..."
             v-model="updateArticleForm.content"
             @onUploadImg="onUploadImg"
             editorId="updateArticleEditor"

@@ -60,6 +60,14 @@ const routes = [
         }
       }
     ]
+  },
+  {
+    path: '/archive/list', // 归档页
+    component: () => import('@/pages/frontend/archive-list.vue'),
+    meta: {
+      // meta 信息
+      title: 'Weblog 归档页'
+    }
   }
 ]
 
