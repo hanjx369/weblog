@@ -6,20 +6,16 @@ const blogSettingsStore = useBlogSettingsStore()
 
 <template>
   <footer class="bg-white mt-5 dark:bg-gray-800">
-    <div class="w-full mx-auto max-w-screen-xl py-6 md:flex md:items-center md:justify-between">
-      <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400"
-        >© 2023 <a href="#" class="hover:underline">{{ blogSettingsStore.blogSettings.author }}</a
-        >.
+    <div
+      class="flex justify-center flex-col items-center w-full top-0 left-0 right-0 bottom-0 mx-auto max-w-screen-xl py-6 md:flex md:items-center md:justify-center md:flex-col"
+    >
+      <span class="text-blue-500 font-bold">一言</span>
+      <span class="text-gray-500 text-sm">
+        备案号:
+        <a href="#" class="mr-4 hover:underline md:mr-6">{{
+          blogSettingsStore.blogSettings.icp
+        }}</a>
       </span>
-      <ul
-        class="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0"
-      >
-        <li>
-          备案号：<a href="#" class="mr-4 hover:underline md:mr-6">{{
-            blogSettingsStore.blogSettings.icp
-          }}</a>
-        </li>
-      </ul>
     </div>
   </footer>
 </template>
