@@ -19,12 +19,6 @@ const categoryId = ref(route.query.id)
 watch(route, (newRoute) => {
   categoryName.value = newRoute.query.name
   categoryId.value = newRoute.query.id
-})
-
-// 监听路由
-watch(route, (newRoute) => {
-  categoryName.value = newRoute.query.name
-  categoryId.value = newRoute.query.id
   getCategoryArticles(current.value)
 })
 
