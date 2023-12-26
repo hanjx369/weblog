@@ -84,6 +84,22 @@ const routes = [
       // meta 信息
       title: 'Weblog 分类文章页'
     }
+  },
+  {
+    path: '/tag/list', // 标签列表页
+    component: () => import('@/pages/frontend/tag-list.vue'),
+    meta: {
+      // meta 信息
+      title: 'Weblog 标签列表页'
+    }
+  },
+  {
+    path: '/tag/article/list', // 标签列表页
+    component: () => import('@/pages/frontend/tag-article-list.vue'),
+    meta: {
+      // meta 信息
+      title: 'Weblog 标签文章页'
+    }
   }
 ]
 
