@@ -9,6 +9,8 @@ import '@/permission'
 import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 // 引入全局状态管理 Pinia
 import pinia from '@/stores'
+import 'viewerjs/dist/viewer.css'
+import VueViewer from 'v-viewer'
 
 const app = createApp(App)
 
@@ -18,4 +20,5 @@ for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
 
 app.use(pinia)
 app.use(router)
+app.use(VueViewer)
 app.mount('#app')

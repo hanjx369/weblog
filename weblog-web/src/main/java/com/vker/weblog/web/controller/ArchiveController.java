@@ -2,8 +2,8 @@ package com.vker.weblog.web.controller;
 
 import com.vker.weblog.common.annotation.ApiOperationLog;
 import com.vker.weblog.common.utils.PageResponse;
-import com.vker.weblog.web.model.vo.article.FindArchiveArticlePageListReqVO;
-import com.vker.weblog.web.model.vo.article.FindArchiveArticlePageListRspVO;
+import com.vker.weblog.web.model.vo.archive.FindArchiveArticlePageListReqVO;
+import com.vker.weblog.web.model.vo.archive.FindArchiveArticlePageListRspVO;
 import com.vker.weblog.web.service.ArchiveService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

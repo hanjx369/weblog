@@ -3,17 +3,22 @@ package com.vker.weblog.web.service.impl;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.google.common.collect.Lists;
+import com.vker.weblog.admin.event.ReadArticleEvent;
 import com.vker.weblog.common.domain.dos.*;
 import com.vker.weblog.common.domain.mapper.*;
+import com.vker.weblog.common.enums.ResponseCodeEnum;
+import com.vker.weblog.common.exception.BizException;
 import com.vker.weblog.common.utils.PageResponse;
+import com.vker.weblog.common.utils.Response;
 import com.vker.weblog.web.convert.ArticleConvert;
-import com.vker.weblog.web.model.vo.article.FindIndexArticlePageListReqVO;
-import com.vker.weblog.web.model.vo.article.FindIndexArticlePageListRspVO;
+import com.vker.weblog.web.markdown.MarkdownHelper;
+import com.vker.weblog.web.model.vo.article.*;
 import com.vker.weblog.web.model.vo.category.FindCategoryListRspVO;
 import com.vker.weblog.web.model.vo.tag.FindTagListRspVO;
 import com.vker.weblog.web.service.ArticleService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
@@ -42,6 +47,10 @@ public class ArticleServiceImpl implements ArticleService {
     private TagMapper tagMapper;
     @Autowired
     private ArticleTagRelMapper articleTagRelMapper;
+    @Autowired
+    private ArticleContentMapper articleContentMapper;
+    @Autowired
+    private ApplicationEventPublisher eventPublisher;
 
     /**
      * 获取首页文章分页数据
@@ -63,9 +72,7 @@ public class ArticleServiceImpl implements ArticleService {
         List<FindIndexArticlePageListRspVO> vos = null;
         if (!CollectionUtils.isEmpty(articleDOS)) {
             // 文章 DO 转 VO
-            vos = articleDOS.stream()
-                    .map(ArticleConvert.INSTANCE::convertDO2VO)
-                    .collect(Collectors.toList());
+            vos = articleDOS.stream().map(ArticleConvert.INSTANCE::convertDO2VO).collect(Collectors.toList());
 
             // 拿到所有文章的 ID 集合
             List<Long> articleIds = articleDOS.stream().map(ArticleDO::getId).collect(Collectors.toList());
@@ -91,10 +98,7 @@ public class ArticleServiceImpl implements ArticleService {
                     // 通过分类 ID 从 map 中拿到对应的分类名称
                     String categoryName = categoryIdNameMap.get(categoryId);
 
-                    FindCategoryListRspVO findCategoryListRspVO = FindCategoryListRspVO.builder()
-                            .id(categoryId)
-                            .name(categoryName)
-                            .build();
+                    FindCategoryListRspVO findCategoryListRspVO = FindCategoryListRspVO.builder().id(categoryId).name(categoryName).build();
                     // 设置到当前 vo 类中
                     vo.setCategory(findCategoryListRspVO);
                 }
@@ -119,10 +123,7 @@ public class ArticleServiceImpl implements ArticleService {
                     Long tagId = articleTagRelDO.getTagId();
                     String tagName = mapIdNameMap.get(tagId);
 
-                    FindTagListRspVO findTagListRspVO = FindTagListRspVO.builder()
-                            .id(tagId)
-                            .name(tagName)
-                            .build();
+                    FindTagListRspVO findTagListRspVO = FindTagListRspVO.builder().id(tagId).name(tagName).build();
                     findTagListRspVOS.add(findTagListRspVO);
                 });
                 // 设置转换后的标签数据
@@ -131,5 +132,64 @@ public class ArticleServiceImpl implements ArticleService {
         }
 
         return PageResponse.success(articleDOPage, vos);
+    }
+
+    /**
+     * 获取文章详情
+     *
+     * @param findArticleDetailReqVO
+     * @return
+     */
+    @Override
+    public Response<FindArticleDetailRspVO> findArticleDetail(FindArticleDetailReqVO findArticleDetailReqVO) {
+        Long articleId = findArticleDetailReqVO.getArticleId();
+
+        ArticleDO articleDO = articleMapper.selectById(articleId);
+
+        // 判断文章是否存在
+        if (Objects.isNull(articleDO)) {
+            log.warn("==> 该文章不存在, articleId: {}", articleId);
+            throw new BizException(ResponseCodeEnum.ARTICLE_NOT_FOUND);
+        }
+
+        // 查询正文
+        ArticleContentDO articleContentDO = articleContentMapper.selectByArticleId(articleId);
+
+        // DO 转 VO
+        FindArticleDetailRspVO vo = FindArticleDetailRspVO.builder().title(articleDO.getTitle()).createTime(articleDO.getCreateTime()).content(MarkdownHelper.convertMarkdown2Html(articleContentDO.getContent())).readNum(articleDO.getReadNum()).build();
+
+        // 查询所属分类
+        ArticleCategoryRelDO articleCategoryRelDO = articleCategoryRelMapper.selectByArticleId(articleId);
+        CategoryDO categoryDO = categoryMapper.selectById(articleCategoryRelDO.getCategoryId());
+        vo.setCategoryId(categoryDO.getId());
+        vo.setCategoryName(categoryDO.getName());
+
+        // 查询标签
+        List<ArticleTagRelDO> articleTagRelDOS = articleTagRelMapper.selectByArticleId(articleId);
+        List<Long> tagIds = articleTagRelDOS.stream().map(ArticleTagRelDO::getTagId).collect(Collectors.toList());
+        List<TagDO> tagDOS = tagMapper.selectByIds(tagIds);
+
+        // 标签 DO 转 VO
+        List<FindTagListRspVO> tagVOS = tagDOS.stream().map(tagDO -> FindTagListRspVO.builder().id(tagDO.getId()).name(tagDO.getName()).build()).collect(Collectors.toList());
+        vo.setTags(tagVOS);
+
+        // 上一篇
+        ArticleDO preArticleDO = articleMapper.selectPreArticle(articleId);
+        if (Objects.nonNull(preArticleDO)) {
+            FindPreNextArticleRspVO preArticleVO = FindPreNextArticleRspVO.builder().articleId(preArticleDO.getId()).articleTitle(preArticleDO.getTitle()).build();
+            vo.setPreArticle(preArticleVO);
+        }
+
+        // 下一篇
+        ArticleDO nextArticleDO = articleMapper.selectNextArticle(articleId);
+        if (Objects.nonNull(nextArticleDO)) {
+            FindPreNextArticleRspVO nextArticleVO = FindPreNextArticleRspVO.builder().articleId(nextArticleDO.getId()).articleTitle(nextArticleDO.getTitle()).build();
+            vo.setNextArticle(nextArticleVO);
+        }
+
+        // 发布文章阅读事件
+        eventPublisher.publishEvent(new ReadArticleEvent(this, articleId));
+
+        return Response.success(vo);
     }
 }

@@ -1,6 +1,9 @@
 package com.vker.weblog.web.service;
 
 import com.vker.weblog.common.utils.PageResponse;
+import com.vker.weblog.common.utils.Response;
+import com.vker.weblog.web.model.vo.article.FindArticleDetailReqVO;
+import com.vker.weblog.web.model.vo.article.FindArticleDetailRspVO;
 import com.vker.weblog.web.model.vo.article.FindIndexArticlePageListReqVO;
 import com.vker.weblog.web.model.vo.article.FindIndexArticlePageListRspVO;
 
@@ -16,4 +19,12 @@ public interface ArticleService {
      * @return
      */
     PageResponse<FindIndexArticlePageListRspVO> findArticlePageList(FindIndexArticlePageListReqVO findIndexArticlePageListReqVO);
+
+    /**
+     * 获取文章详情
+     *
+     * @param findArticleDetailReqVO
+     * @return
+     */
+    Response<FindArticleDetailRspVO> findArticleDetail(FindArticleDetailReqVO findArticleDetailReqVO);
 }

@@ -6,9 +6,9 @@ import com.vker.weblog.common.domain.dos.ArticleDO;
 import com.vker.weblog.common.domain.mapper.ArticleMapper;
 import com.vker.weblog.common.utils.PageResponse;
 import com.vker.weblog.web.convert.ArticleConvert;
-import com.vker.weblog.web.model.vo.article.FindArchiveArticlePageListReqVO;
-import com.vker.weblog.web.model.vo.article.FindArchiveArticlePageListRspVO;
-import com.vker.weblog.web.model.vo.article.FindArchiveArticleRspVO;
+import com.vker.weblog.web.model.vo.archive.FindArchiveArticlePageListReqVO;
+import com.vker.weblog.web.model.vo.archive.FindArchiveArticlePageListRspVO;
+import com.vker.weblog.web.model.vo.archive.FindArchiveArticleRspVO;
 import com.vker.weblog.web.service.ArchiveService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,4 +68,6 @@ public class ArchiveServiceImpl implements ArchiveService {
 
         return PageResponse.success(page, vos);
     }
+
+
 }

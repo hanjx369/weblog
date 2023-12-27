@@ -1,8 +1,8 @@
 package com.vker.weblog.web.service;
 
 import com.vker.weblog.common.utils.PageResponse;
-import com.vker.weblog.web.model.vo.article.FindArchiveArticlePageListReqVO;
-import com.vker.weblog.web.model.vo.article.FindArchiveArticlePageListRspVO;
+import com.vker.weblog.web.model.vo.archive.FindArchiveArticlePageListReqVO;
+import com.vker.weblog.web.model.vo.archive.FindArchiveArticlePageListRspVO;
 
 /**
  * @Author: Vker
@@ -18,5 +18,4 @@ public interface ArchiveService {
      * @return
      */
     PageResponse<FindArchiveArticlePageListRspVO> findArchivePageList(FindArchiveArticlePageListReqVO findArchiveArticlePageListReqVO);
-
 }

@@ -2,8 +2,8 @@ package com.vker.weblog.web.service;
 
 import com.vker.weblog.common.utils.PageResponse;
 import com.vker.weblog.common.utils.Response;
-import com.vker.weblog.web.model.vo.article.FindCategoryArticlePageListReqVO;
-import com.vker.weblog.web.model.vo.article.FindCategoryArticlePageListRspVO;
+import com.vker.weblog.web.model.vo.category.FindCategoryArticlePageListReqVO;
+import com.vker.weblog.web.model.vo.category.FindCategoryArticlePageListRspVO;
 import com.vker.weblog.web.model.vo.category.FindCategoryListRspVO;
 
 import java.util.List;

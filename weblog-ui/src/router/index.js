@@ -100,6 +100,22 @@ const routes = [
       // meta 信息
       title: 'Weblog 标签文章页'
     }
+  },
+  {
+    path: '/article/:articleId', // 文章详情页
+    component: () => import('@/pages/frontend/article-detail.vue'),
+    meta: {
+      // meta 信息
+      title: 'Weblog 详情页'
+    }
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'NotFound',
+    component: () => import('@/pages/frontend/404.vue'),
+    meta: {
+      title: '404 页'
+    }
   }
 ]
 

@@ -1,8 +1,8 @@
 package com.vker.weblog.web.convert;
 
 import com.vker.weblog.common.domain.dos.ArticleDO;
-import com.vker.weblog.web.model.vo.article.FindArchiveArticleRspVO;
-import com.vker.weblog.web.model.vo.article.FindCategoryArticlePageListRspVO;
+import com.vker.weblog.web.model.vo.archive.FindArchiveArticleRspVO;
+import com.vker.weblog.web.model.vo.category.FindCategoryArticlePageListRspVO;
 import com.vker.weblog.web.model.vo.article.FindIndexArticlePageListRspVO;
 import com.vker.weblog.web.model.vo.tag.FindTagArticlePageListRspVO;
 import org.mapstruct.Mapper;
