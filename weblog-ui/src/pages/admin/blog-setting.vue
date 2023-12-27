@@ -39,28 +39,28 @@ const isXituChecked = ref(false)
 
 // 监听 Github Switch 改变事件
 const githubSwitchChange = (checked) => {
-  if (checked == false) {
+  if (!checked) {
     form.githubHomepage = ''
   }
 }
 
 // 监听 Gitee Switch 改变事件
 const giteeSwitchChange = (checked) => {
-  if (checked == false) {
+  if (!checked) {
     form.giteeHomepage = ''
   }
 }
 
 // 监听知乎 Switch 改变事件
 const zhihuSwitchChange = (checked) => {
-  if (checked == false) {
+  if (!checked) {
     form.zhihuHomepage = ''
   }
 }
 
 // 监听 CSDN Switch 改变事件
 const xituSwitchChange = (checked) => {
-  if (checked == false) {
+  if (!checked) {
     form.xituHomepage = ''
   }
 }
@@ -112,15 +112,11 @@ const handleLogoChange = (file) => {
   formData.append('file', file.raw)
   uploadFile(formData).then((e) => {
     // 响参失败，提示错误消息
-    if (e.success == false) {
-      let message = e.message
-      showMessage(message, 'error')
-      return
+    if (e.success) {
+      // 成功则设置 logo 链接，并提示成功
+      form.logo = e.data.url
+      showMessage('上传成功')
     }
-
-    // 成功则设置 logo 链接，并提示成功
-    form.logo = e.data.url
-    showMessage('上传成功')
   })
 }
 
@@ -132,15 +128,11 @@ const handleAvatarChange = (file) => {
   formData.append('file', file.raw)
   uploadFile(formData).then((e) => {
     // 响参失败，提示错误消息
-    if (e.success == false) {
-      let message = e.message
-      showMessage(message, 'error')
-      return
+    if (e.success) {
+      // 成功则设置作者头像链接，并提示成功
+      form.avatar = e.data.url
+      showMessage('上传成功')
     }
-
-    // 成功则设置作者头像链接，并提示成功
-    form.avatar = e.data.url
-    showMessage('上传成功')
   })
 }
 
@@ -159,17 +151,11 @@ const onSubmit = () => {
       btnLoading.value = true
       await updateBlogSettings(form)
         .then((res) => {
-          if (res.success == false) {
-            // 获取服务端返回的错误消息
-            let message = res.message
-            // 提示错误消息
-            showMessage(message, 'error')
-            return
+          if (res.success) {
+            // 重新渲染页面中的信息
+            initBlogSettings()
+            showMessage('保存成功')
           }
-
-          // 重新渲染页面中的信息
-          initBlogSettings()
-          showMessage('保存成功')
         })
         .finally(() => (btnLoading.value = false)) // 隐藏保存按钮 loading
     }

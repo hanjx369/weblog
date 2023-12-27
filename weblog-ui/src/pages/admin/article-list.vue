@@ -108,27 +108,21 @@ async function getTableData() {
 getTableData()
 // 每页展示数量变更事件
 const handleSizeChange = (chooseSize) => {
-  console.log('选择的页码' + chooseSize)
   size.value = chooseSize
   getTableData()
 }
 
 // 删除文章
 const deleteArticleSubmit = (row) => {
-  console.log(row)
-  showModel('是否确定要删除该文章？')
-    .then(() => {
-      deleteArticle(row.id).then((res) => {
-        if (res.success) {
-          showMessage('删除成功')
-          // 重新请求分页接口，渲染数据
-          getTableData()
-        }
-      })
+  showModel('是否确定要删除该文章？').then(() => {
+    deleteArticle(row.id).then((res) => {
+      if (res.success) {
+        showMessage('删除成功')
+        // 重新请求分页接口，渲染数据
+        getTableData()
+      }
     })
-    .catch(() => {
-      console.log('取消了')
-    })
+  })
 }
 
 // 是否显示文章发布对话框
@@ -273,15 +267,11 @@ const handleUpdateCoverChange = async (file) => {
   formData.append('file', file.raw)
   await uploadFile(formData).then((e) => {
     // 响参失败，提示错误消息url
-    if (e.success == false) {
-      let message = e.message
-      showMessage(message, 'error')
-      return
+    if (e.success) {
+      // 成功则设置表单对象中的封面链接，并提示上传成功
+      updateArticleForm.cover = e.data.url
+      showMessage('上传成功')
     }
-
-    // 成功则设置表单对象中的封面链接，并提示上传成功
-    updateArticleForm.cover = e.data.url
-    showMessage('上传成功')
   })
 }
 
@@ -308,26 +298,18 @@ const showArticleUpdateEditor = async (row) => {
 const updateSubmit = () => {
   updateArticleFormRef.value.validate((valid) => {
     // 校验表单
-    if (!valid) {
-      return false
+    if (valid) {
+      // 请求更新文章接口
+      updateArticle(updateArticleForm).then((res) => {
+        if (res.success) {
+          showMessage('保存成功')
+          // 隐藏编辑框
+          isArticleUpdateEditorShow.value = false
+          // 重新请求分页接口，渲染列表数据
+          getTableData()
+        }
+      })
     }
-
-    // 请求更新文章接口
-    updateArticle(updateArticleForm).then((res) => {
-      if (res.success == false) {
-        // 获取服务端返回的错误消息
-        let message = res.message
-        // 提示错误消息
-        showMessage(message, 'error')
-        return
-      }
-
-      showMessage('保存成功')
-      // 隐藏编辑框
-      isArticleUpdateEditorShow.value = false
-      // 重新请求分页接口，渲染列表数据
-      getTableData()
-    })
   })
 }
 
