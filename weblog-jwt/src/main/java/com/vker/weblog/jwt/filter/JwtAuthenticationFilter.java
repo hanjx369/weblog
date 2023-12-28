@@ -1,7 +1,7 @@
 package com.vker.weblog.jwt.filter;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.alibaba.fastjson2.JSON;
+import com.alibaba.fastjson2.JSONObject;
 import com.vker.weblog.jwt.exception.UsernameOrPasswordNotFoundException;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -14,7 +14,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Objects;
 
 /**
  * @Author: Vker
@@ -43,11 +42,10 @@ public class JwtAuthenticationFilter extends AbstractAuthenticationProcessingFil
      */
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException, IOException, ServletException {
-        ObjectMapper mapper = new ObjectMapper();
+        JSONObject object = JSON.parseObject(request.getInputStream());
         // 解析提交的 JSON 数据
-        JsonNode jsonNode = mapper.readTree(request.getInputStream());
-        String username = jsonNode.get("username").textValue();
-        String password = jsonNode.get("password").textValue();
+        String username = (String) object.get("username");
+        String password = (String) object.get("password");
         // 判断用户名密码
         if (StringUtils.isBlank(username) || StringUtils.isBlank(password)) {
             throw new UsernameOrPasswordNotFoundException("用户名或密码不能为空");
