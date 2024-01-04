@@ -3,7 +3,7 @@ package com.vker.weblog.common.utils;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * @Author: Vker
+ * @Author: 寒江雪
  * @Date: 2023-12-21
  * @Description: IP工具类
  */

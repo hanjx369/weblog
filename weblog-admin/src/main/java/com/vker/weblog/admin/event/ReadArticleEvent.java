@@ -4,7 +4,7 @@ import lombok.Getter;
 import org.springframework.context.ApplicationEvent;
 
 /**
- * @Author: Vker
+ * @Author: 寒江雪
  * @Date: 2023-12-27
  * @Description: 文章被阅读事件
  */

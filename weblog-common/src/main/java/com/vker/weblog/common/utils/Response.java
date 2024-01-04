@@ -7,7 +7,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * @Author: Vker
+ * @Author: 寒江雪
  * @Date: 2023-12-21
  * @Description: 响应参数工具类
  */

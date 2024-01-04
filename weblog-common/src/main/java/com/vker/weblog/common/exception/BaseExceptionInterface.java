@@ -1,7 +1,7 @@
 package com.vker.weblog.common.exception;
 
 /**
- * @Author: Vker
+ * @Author: 寒江雪
  * @Date: 2023-12-21
  * @Description: 基础异常接口
  */

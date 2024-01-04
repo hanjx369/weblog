@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.vker.weblog.common.domain.dos.ArticleContentDO;
 
 /**
- * @Author: Vker
+ * @Author: 寒江雪
  * @Date: 2023-12-25
  * @Description: 文章内容表
  */

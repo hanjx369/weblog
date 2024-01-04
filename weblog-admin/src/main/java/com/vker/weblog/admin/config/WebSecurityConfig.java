@@ -14,7 +14,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 /**
- * @Author: Vker
+ * @Author: 寒江雪
  * @Date: 2023-12-22
  * @Description: SpringSecurity 配置类
  */

@@ -16,7 +16,7 @@ import java.util.Base64;
 import java.util.Date;
 
 /**
- * @Author: Vker
+ * @Author: 寒江雪
  * @Date: 2023-12-22
  * @Description: jwt工具类
  */

@@ -6,7 +6,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 /**
- * @Author: Vker
+ * @Author: 寒江雪
  * @Date: 2023-12-27
  * @Description: 配置线程池
  */

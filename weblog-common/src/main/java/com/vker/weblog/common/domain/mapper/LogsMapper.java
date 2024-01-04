@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.vker.weblog.common.domain.dos.Logs;
 
 /**
- * @Author: Vker
+ * @Author: 寒江雪
  * @Date: 2024-01-03
  * @Description:
  */

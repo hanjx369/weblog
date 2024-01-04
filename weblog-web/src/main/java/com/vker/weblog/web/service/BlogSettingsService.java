@@ -4,7 +4,7 @@ import com.vker.weblog.common.utils.Response;
 import com.vker.weblog.web.model.vo.setting.FindBlogSettingsDetailRspVO;
 
 /**
- * @Author: Vker
+ * @Author: 寒江雪
  * @Date: 2023-12-25
  * @Description:
  */

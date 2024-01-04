@@ -15,7 +15,7 @@ import org.springframework.security.web.DefaultSecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 /**
- * @Author: Vker
+ * @Author: 寒江雪
  * @Date: 2023-12-22
  * @Description: 自定义 JWT 认证功能
  */

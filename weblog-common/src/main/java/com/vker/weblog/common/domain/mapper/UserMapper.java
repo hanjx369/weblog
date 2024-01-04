@@ -8,7 +8,7 @@ import com.vker.weblog.common.domain.dos.UserDO;
 import java.time.LocalDateTime;
 
 /**
- * @Author: Vker
+ * @Author: 寒江雪
  * @Date: 2023-12-22
  * @Description: 用户表 Mapper
  */

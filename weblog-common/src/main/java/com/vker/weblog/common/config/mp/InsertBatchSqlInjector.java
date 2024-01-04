@@ -8,7 +8,7 @@ import com.baomidou.mybatisplus.extension.injector.methods.InsertBatchSomeColumn
 import java.util.List;
 
 /**
- * @Author: Vker
+ * @Author: 寒江雪
  * @Date: 2023-12-25
  * @Description: SQL注入器
  */

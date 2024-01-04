@@ -13,7 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.UUID;
 
 /**
- * @Author: Vker
+ * @Author: 寒江雪
  * @Date: 2023-12-24
  * @Description: Minio工具类
  */

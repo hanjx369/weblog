@@ -8,7 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * @Author: Vker
+ * @Author: 寒江雪
  * @Date: 2023-12-24
  * @Description: 上传文件入参
  */

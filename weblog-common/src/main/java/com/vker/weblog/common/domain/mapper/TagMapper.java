@@ -8,7 +8,7 @@ import com.vker.weblog.common.domain.dos.TagDO;
 import java.util.List;
 
 /**
- * @Author: Vker
+ * @Author: 寒江雪
  * @Date: 2023-12-24
  * @Description: 标签表实体类
  */

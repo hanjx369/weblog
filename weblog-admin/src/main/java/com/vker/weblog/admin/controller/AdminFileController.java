@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
- * @Author: Vker
+ * @Author: 寒江雪
  * @Date: 2023-12-24
  * @Description: 文件上传控制层
  */

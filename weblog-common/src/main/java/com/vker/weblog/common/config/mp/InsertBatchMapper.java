@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 /**
- * @Author: Vker
+ * @Author: 寒江雪
  * @Date: 2023-12-25
  * @Description: 批量插入 Mapper
  */

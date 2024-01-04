@@ -5,7 +5,7 @@ import com.vker.weblog.admin.model.vo.user.UpdateAdminUserPasswordReqVO;
 import com.vker.weblog.common.utils.Response;
 
 /**
- * @Author: Vker
+ * @Author: 寒江雪
  * @Date: 2023-12-23
  * @Description: 后台用户服务接口
  */

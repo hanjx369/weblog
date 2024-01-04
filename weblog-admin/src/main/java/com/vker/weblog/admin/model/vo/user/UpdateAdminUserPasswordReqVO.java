@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 import javax.validation.constraints.NotBlank;
 
 /**
- * @Author: Vker
+ * @Author: 寒江雪
  * @Date: 2023-12-23
  * @Description: 修改密码
  */

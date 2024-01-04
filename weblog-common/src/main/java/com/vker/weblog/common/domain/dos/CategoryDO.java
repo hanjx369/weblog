@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 
 /**
- * @Author: Vker
+ * @Author: 寒江雪
  * @Date: 2023-12-23
  * @Description: 分类表实体类
  */

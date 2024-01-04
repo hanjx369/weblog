@@ -10,7 +10,7 @@ import org.hibernate.validator.constraints.Length;
 import javax.validation.constraints.NotBlank;
 
 /**
- * @Author: Vker
+ * @Author: 寒江雪
  * @Date: 2023-12-23
  * @Description: 添加分类
  */

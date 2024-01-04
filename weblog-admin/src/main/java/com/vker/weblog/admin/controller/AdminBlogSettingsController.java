@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * @Author: Vker
+ * @Author: 寒江雪
  * @Date: 2023-12-24
  * @Description: 网站设置控制层
  */

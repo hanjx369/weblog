@@ -3,7 +3,7 @@ package com.vker.weblog.common.annotation;
 import java.lang.annotation.*;
 
 /**
- * @Author: Vker
+ * @Author: 寒江雪
  * @Date: 2023-12-21
  * @Description: 日志记录注解
  */

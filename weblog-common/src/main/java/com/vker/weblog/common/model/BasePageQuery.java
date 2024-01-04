@@ -3,7 +3,7 @@ package com.vker.weblog.common.model;
 import lombok.Data;
 
 /**
- * @Author: Vker
+ * @Author: 寒江雪
  * @Date: 2023-12-23
  * @Description: 分页参数
  */

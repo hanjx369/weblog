@@ -6,7 +6,7 @@ import com.vker.weblog.common.domain.dos.BlogSettingsDO;
 import com.vker.weblog.common.utils.Response;
 
 /**
- * @Author: Vker
+ * @Author: 寒江雪
  * @Date: 2023-12-24
  * @Description: 系统设置服务
  */

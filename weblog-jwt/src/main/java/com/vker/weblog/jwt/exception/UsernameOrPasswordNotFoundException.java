@@ -3,7 +3,7 @@ package com.vker.weblog.jwt.exception;
 import org.springframework.security.core.AuthenticationException;
 
 /**
- * @Author: Vker
+ * @Author: 寒江雪
  * @Date: 2023-12-22
  * @Description: 用户名密码为空异常
  */
