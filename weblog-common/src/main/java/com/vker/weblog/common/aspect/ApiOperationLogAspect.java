@@ -2,6 +2,8 @@ package com.vker.weblog.common.aspect;
 
 import com.alibaba.fastjson2.JSON;
 import com.vker.weblog.common.annotation.ApiOperationLog;
+import com.vker.weblog.common.domain.dos.Logs;
+import com.vker.weblog.common.domain.service.LogsService;
 import com.vker.weblog.common.utils.IPUtils;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -11,6 +13,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.MDC;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -20,7 +23,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.Method;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.UUID;
 import java.util.function.Function;
@@ -35,6 +37,9 @@ import java.util.stream.Collectors;
 @Aspect
 @Component
 public class ApiOperationLogAspect {
+
+    @Autowired
+    private LogsService logsService;
 
     @Pointcut("@annotation(com.vker.weblog.common.annotation.ApiOperationLog)")
     public void apiOperationLog() {
@@ -69,18 +74,18 @@ public class ApiOperationLogAspect {
             String descriptions = getApiOperationLogDescription(joinPoint);
             Object result = joinPoint.proceed();
             long endTime = System.currentTimeMillis();
-            log.info("========================>请求开始打印");
-            log.info("时间: {}", LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
-            log.info("IP: {}", ip);
-            log.info("路径: {}", url);
-            log.info("类型: {}", requestType);
-            log.info("类名: {}", className);
-            log.info("方法: {}", methodName);
-            log.info("描述: {}", descriptions);
-            log.info("入参: {}", argsJsonString);
-            log.info("出参: {}", JSON.toJSONString(result));
-            log.info("耗时: {} ms", endTime - startTime);
-            log.info("========================>请求结束打印");
+            logsService.recording(Logs.builder()
+                    .url(url)
+                    .type(requestType)
+                    .className(className)
+                    .methodName(methodName)
+                    .descriptions(descriptions)
+                    .args(argsJsonString)
+                    .result(JSON.toJSONString(result))
+                    .take(endTime - startTime)
+                    .ip(ip)
+                    .createTime(LocalDateTime.now())
+                    .build());
             return result;
         } finally {
             MDC.clear();
