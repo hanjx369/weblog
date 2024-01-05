@@ -64,7 +64,7 @@ public class AdminTagServiceImpl implements AdminTagService {
     }
 
     @Override
-    public Response deleteTag(DeleteTagReqVO deleteTagReqVO) {
+    public Response<Void> deleteTag(DeleteTagReqVO deleteTagReqVO) {
         // 标签 ID
         Long tagId = deleteTagReqVO.getId();
 

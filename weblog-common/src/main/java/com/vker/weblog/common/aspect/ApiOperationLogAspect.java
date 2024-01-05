@@ -2,7 +2,7 @@ package com.vker.weblog.common.aspect;
 
 import com.alibaba.fastjson2.JSON;
 import com.vker.weblog.common.annotation.ApiOperationLog;
-import com.vker.weblog.common.domain.dos.Logs;
+import com.vker.weblog.common.domain.dos.LogsDO;
 import com.vker.weblog.common.domain.service.LogsService;
 import com.vker.weblog.common.utils.IPUtils;
 import lombok.SneakyThrows;
@@ -74,7 +74,7 @@ public class ApiOperationLogAspect {
             String descriptions = getApiOperationLogDescription(joinPoint);
             Object result = joinPoint.proceed();
             long endTime = System.currentTimeMillis();
-            logsService.recording(Logs.builder()
+            logsService.recording(LogsDO.builder()
                     .url(url)
                     .type(requestType)
                     .className(className)

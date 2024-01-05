@@ -1,6 +1,8 @@
 package com.vker.weblog.common.domain.service;
 
-import com.vker.weblog.common.domain.dos.Logs;
+import com.vker.weblog.common.domain.dos.LogsDO;
+import com.vker.weblog.common.model.vo.logs.FindLogsPageListReqVO;
+import com.vker.weblog.common.model.vo.logs.FindLogsPageListRspVO;
 import com.vker.weblog.common.utils.PageResponse;
 
 /**
@@ -15,12 +17,12 @@ public interface LogsService {
      *
      * @param logs
      */
-    void recording(Logs logs);
+    void recording(LogsDO logs);
 
     /**
      * 日志列表
      *
      * @return
      */
-    PageResponse<Logs> list();
+    PageResponse<FindLogsPageListRspVO> list(FindLogsPageListReqVO findLogsPageListReqVO);
 }
